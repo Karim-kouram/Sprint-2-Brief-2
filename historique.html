@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="src/output.css">
+</head>
+<body class="min-h-screen bg-empire-dark text-white">
+    <!-- HEADER -->
+    <header class="border-b border-white/10">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 lg:px-10">
+
+            <a href="#accueil" class="flex items-center gap-3">
+                <div class="logo flex h-11 w-11 items-center justify-center rounded-xl border border-empire-gold/50 bg-empire-gold/10 text-2xl">
+                    ♛
+                </div>
+
+                <div>
+                    <h1 class="text-lg font-bold tracking-wide">
+                        EMPIRE <span class="text-empire-gold">CARDS</span>
+                    </h1>
+                    <p class="Pseudo text-xs text-empire-muted">
+                        Le pouvoir est entre vos mains
+                    </p>
+                </div>
+            </a>
+
+            <div class="hidden items-center gap-8 md:flex">
+                <a href="index.html" class="text-sm text-empire-gold">Accueil</a>
+                <a href="regle.html" class="text-sm text-gray-300 transition hover:text-empire-gold">Règles</a>
+                <a href="jouee.html" class="text-sm text-gray-300 transition hover:text-empire-gold">jouer</a>
+                <a href="historique.html" class="text-sm text-gray-300 transition hover:text-empire-gold">Classement</a>
+                <a href="#profil" class="text-sm text-gray-300 transition hover:text-empire-gold">Mon profil</a>
+            </div>
+
+            <!-- Menu mobile -->
+            <a href="index.html"
+               class="rounded-lg border border-empire-gold px-4 py-2 text-sm font-semibold text-empire-gold transition hover:bg-empire-gold hover:text-black md:hidden">
+                Mon profil
+            </a>
+
+        </nav>
+    </header>
+
+    <main>
+
+    <!-- CLASSEMENT -->
+        <section id="classement" class="mx-auto max-w-7xl px-5 py-16 lg:px-10">
+
+            <div>
+                <p class="text-sm font-bold uppercase tracking-widest text-empire-gold">
+                    Les meilleurs joueurs
+                </p>
+
+                <h2 class="mt-3 text-3xl font-black">Classement</h2>
+
+                <p class="mt-3 text-sm text-gray-500">
+                    Données de démonstration, à remplacer par les résultats réels.
+                </p>
+            </div>
+
+            <div class="mt-8 overflow-x-auto rounded-2xl border border-white/10">
+                <table class="w-full min-w-[500px] text-left">
+
+                    <thead class="bg-white/5 text-sm text-gray-400">
+                        <tr>
+                            <th class="px-6 py-4">Rang</th>
+                            <th class="px-6 py-4">Joueur</th>
+                            <th class="px-6 py-4">Victoires</th>
+                            <th class="px-6 py-4">Points</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="divide-y divide-white/10 text-sm">
+                        <tr class="transition hover:bg-white/5">
+                            <td class="px-6 py-5 font-bold text-empire-gold">#1</td>
+                            <td class="px-6 py-5 font-semibold">KingPlayer</td>
+                            <td class="px-6 py-5">24</td>
+                            <td class="px-6 py-5 font-bold text-empire-gold">720</td>
+                        </tr>
+
+                        <tr class="transition hover:bg-white/5">
+                            <td class="px-6 py-5 font-bold text-gray-300">#2</td>
+                            <td class="px-6 py-5 font-semibold">CardMaster</td>
+                            <td class="px-6 py-5">19</td>
+                            <td class="px-6 py-5 font-bold">570</td>
+                        </tr>
+
+                        <tr class="transition hover:bg-white/5">
+                            <td class="px-6 py-5 font-bold text-amber-700">#3</td>
+                            <td class="px-6 py-5 font-semibold">ShadowAce</td>
+                            <td class="px-6 py-5">15</td>
+                            <td class="px-6 py-5 font-bold">450</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+        </section>
+
+    </main>
+
+        <!-- FOOTER -->
+    <footer class="border-t border-white/10 px-5 py-7">
+        <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 text-center sm:flex-row">
+
+            <a href="#accueil" class="font-bold tracking-wide">
+                EMPIRE <span class="text-empire-gold">CARDS</span>
+            </a>
+
+            <p class="text-sm text-gray-500">
+                © 2026 Empire Cards — Tous droits réservés.
+            </p>
+
+            <a href="#accueil" class="text-sm text-gray-400 transition hover:text-empire-gold">
+                Retour en haut ↑
+            </a>
+
+        </div>
+    </footer>
+</body>
+</html>

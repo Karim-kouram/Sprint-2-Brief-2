@@ -1,24 +1,388 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="./src/output.css">
+    <title>Empire Cards | Empereur, Citoyen, Esclave</title>
+    <link rel="stylesheet" href="style.css">
 
-  <title>Mon projet</title>
+    <link rel="stylesheet" href="src/output.css">
 </head>
-<body class="bg-gray-100 p-8">
 
-  <h1 class="text-3xl font-bold text-red-600">
-    Hello Tailwind CSS!
-  </h1>
+<body class="min-h-screen bg-empire-dark text-white">
 
-  <button
-    class="mt-4 rounded-lg bg-blue-600 px-5 py-2 text-white hover:bg-blue-800"
-  >
-    Click me
-  </button>
+    <!-- HEADER -->
+    <header class="border-b border-white/10">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 lg:px-10">
 
+            <a href="#accueil" class="flex items-center gap-3">
+                <div class="logo flex h-11 w-11 items-center justify-center rounded-xl border border-empire-gold/50 bg-empire-gold/10 text-2xl">
+                    ♛
+                </div>
+
+                <div>
+                    <h1 class="text-lg font-bold tracking-wide">
+                        EMPIRE <span class="text-empire-gold">CARDS</span>
+                    </h1>
+                    <p class="Pseudo text-xs text-empire-muted">
+                        Le pouvoir est entre vos mains
+                    </p>
+                </div>
+            </a>
+
+            <div class="hidden items-center gap-8 md:flex">
+                <a href="index.html" class="text-sm text-empire-gold">Accueil</a>
+                <a href="regle.html" class="text-sm text-gray-300 transition hover:text-empire-gold">Règles</a>
+                <a href="jouee.html" class="text-sm text-gray-300 transition hover:text-empire-gold">jouer</a>
+                <a href="historique.html" class="text-sm text-gray-300 transition hover:text-empire-gold">Classement</a>
+                <a href="#profil" class="text-sm text-gray-300 transition hover:text-empire-gold">Mon profil</a>
+            </div>
+
+            <!-- Menu mobile -->
+            <a href="#profil"
+               class="rounded-lg border border-empire-gold px-4 py-2 text-sm font-semibold text-empire-gold transition hover:bg-empire-gold hover:text-black md:hidden">
+                Mon profil
+            </a>
+
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- HERO -->
+        <section id="accueil" class="relative overflow-hidden">
+
+            <div class="absolute -left-40 top-10 h-80 w-80 rounded-full bg-empire-gold/5 blur-3xl"></div>
+            <div class="absolute -right-40 bottom-0 h-80 w-80 rounded-full bg-amber-700/10 blur-3xl"></div>
+
+            <div class="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 md:grid-cols-2 md:py-24 lg:px-10">
+
+                <div>
+                    <span class="inline-flex items-center gap-2 rounded-full border border-empire-gold/30 bg-empire-gold/10 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-empire-gold">
+                        <span class="h-2 w-2 rounded-full bg-empire-gold"></span>
+                        Le duel commence ici
+                    </span>
+
+                    <h2 class="mt-6 max-w-xl text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">
+                        Trois rôles.
+                        <span class="text-empire-gold">Un seul</span>
+                        vainqueur.
+                    </h2>
+
+                    <p class="mt-6 max-w-lg leading-7 text-gray-400">
+                        Deviens Empereur, Citoyen ou Esclave dans un duel
+                        stratégique contre l'ordinateur. Choisis ton rôle,
+                        défie ton adversaire et grimpe au sommet du classement.
+                    </p>
+
+                    <a href="#profil"
+                       class="mt-8 inline-block rounded-xl bg-empire-gold px-7 py-4 font-bold text-black transition hover:-translate-y-1 hover:bg-yellow-400">
+                        Créer mon profil ↓
+                    </a>
+
+                    <div class="mt-10 flex flex-wrap gap-8 border-t border-white/10 pt-6">
+                        <div>
+                            <p class="text-2xl font-bold text-empire-gold">3</p>
+                            <p class="mt-1 text-sm text-gray-400">Rôles uniques</p>
+                        </div>
+
+                        <div>
+                            <p class="text-2xl font-bold text-empire-gold">1 vs 1</p>
+                            <p class="mt-1 text-sm text-gray-400">Duel stratégique</p>
+                        </div>
+
+                        <div>
+                            <p class="text-2xl font-bold text-empire-gold">∞</p>
+                            <p class="mt-1 text-sm text-gray-400">Défis à relever</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARTES DECORATIVES -->
+                <div class="flex items-center justify-center gap-3 sm:gap-5">
+
+                    <div class="relative  mt-10 flex h-56 w-32 -rotate-12 flex-col items-center justify-between  p-4 transition duration-300 hover:-translate-y-3 sm:h-72 sm:w-44">
+                        <img src="images/slave.png" alt="slave" class="absolute inset-0 h-full w-full object-cover rounded-2xl">
+                    </div>
+
+                    <div class="relative z-10 flex h-64 w-36 flex-col items-center justify-between  p-4 transition duration-300 hover:-translate-y-3 sm:h-80 sm:w-48">
+                        <img src="images/emperor.png" alt="empereur" class="absolute inset-0 h-full w-full object-cover rounded-2xl">
+                    </div>
+
+                    <div class="relative mt-10 flex h-56 w-32 rotate-12 flex-col items-center justify-between  p-4 transition duration-300 hover:-translate-y-3 sm:h-72 sm:w-44">
+                        <img src="images/citizen.png" alt="citizen" class="absolute inset-0 h-full w-full object-cover rounded-2xl">
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CREATION DU PROFIL -->
+        <section id="profil" class="border-y border-white/10 bg-[#171613]">
+
+            <div class="mx-auto max-w-5xl px-5 py-16 lg:px-10">
+
+                <div class="text-center">
+                    <p class="text-sm font-bold uppercase tracking-[0.25em] text-empire-gold">
+                        Bienvenue dans l'arène
+                    </p>
+
+                    <h2 class="mt-3 text-3xl font-black sm:text-4xl">
+                        Crée ton profil
+                    </h2>
+
+                    <p class="mx-auto mt-4 max-w-xl text-gray-400">
+                        Choisis un pseudo et un avatar pour représenter ton identité
+                        parmi les joueurs du club.
+                    </p>
+                </div>
+
+                <div class="mt-10 flex flex-col gap-8 rounded-2xl border border-white/10 bg-empire-card p-6 sm:p-8 md:flex-row items-center justify-center">
+
+                    <!-- FORMULAIRE -->
+                    <form id="profileForm" class="space-y-6 w-[300px]">
+
+                        <div>
+                            <label for="pseudo" class="mb-2 block text-sm font-semibold">
+                                Ton pseudo
+                            </label>
+
+                            <input
+                                type="text"
+                                id="pseudo"
+                                name="pseudo"
+                                placeholder="Exemple : KingPlayer"
+                                minlength="3"
+                                maxlength="15"
+                                title="Le pseudo doit contenir de 3 à 15 caractères : lettres, chiffres, tirets ou underscores."
+                                
+                                autocomplete="nickname"
+                                class="w-full rounded-xl border border-white/10 bg-[#11110f] px-4 py-3 outline-none transition placeholder:text-gray-600 focus:border-empire-gold focus:ring-2 focus:ring-empire-gold/20"
+                            >
+
+                            <p class="mt-2 text-xs text-gray-500">
+                                De 3 à 15 caractères : lettres, chiffres, _ ou -.
+                            </p>
+
+                            <p id="pseudoError" class="mt-2  text-sm text-red-400"></p>
+                        </div>
+
+                        <div>
+                            <label for="avatar" class="mb-2 block text-sm font-semibold">
+                                Choisis ton avatar
+                            </label>
+
+                            <select
+                                id="avatar"
+                                name="avatar"
+                                required
+                                class="w-full rounded-xl border border-white/10 bg-[#11110f] px-4 py-3 text-white outline-none transition focus:border-empire-gold focus:ring-2 focus:ring-empire-gold/20"
+                            >
+                                <option value="">--choisi--</option>
+                                <option value="👑">👑 Empereur</option>
+                                <option value="⚔️">⚔️ Guerrier</option>
+                                <option value="🛡️">🛡️ Chevalier</option>
+                                <option value="🦊">🦊 Renard</option>
+                                <option value="🐺">🐺 Loup</option>
+                                <option value="🐉">🐉 Dragon</option>
+                                <option value="🦁">🦁 Lion</option>
+                                <option value="👻">👻 Fantôme</option>
+                            </select>
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="w-full rounded-xl bg-empire-gold px-6 py-3.5 font-bold text-black transition hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-empire-gold focus:ring-offset-2 focus:ring-offset-empire-card"
+                        >
+                            Valider mon profil
+                        </button>
+
+                        <p id="formMessage" role="status" aria-live="polite" class=" text-sm"></p>
+
+                    </form>
+
+                    
+<!-- LISTE DES PROFILS -->
+<div class="rounded-2xl border border-empire-gold/20 bg-gradient-to-b from-empire-gold/10 to-transparent p-6 sm:p-8">
+
+    <div class="mb-6">
+        <p class="text-xs font-bold uppercase tracking-[0.25em] text-empire-gold">
+            Gestion des profils
+        </p>
+
+        <h3 class="mt-2 text-2xl font-black">
+            Choisir un profil
+        </h3>
+
+        <p class="mt-2 text-sm text-gray-400">
+            Sélectionne un profil ou modifie ses informations.
+        </p>
+    </div>
+
+    <div id="profilesList" class="space-y-4">
+
+        <!-- PROFIL 1 
+        <article data-pseudo="KingPlayer"
+                 data-avatar="👑"
+                 class="profile-card rounded-xl border border-white/10 bg-[#11110f] p-4 transition hover:border-empire-gold/50">
+
+            <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+                <div class="flex items-center gap-4">
+                    <div class="profile-avatar flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-empire-gold/40 bg-empire-gold/10 text-3xl">
+                        👑
+                    </div>
+
+                    <div class="min-w-0">
+                        <h4 class="profile-name break-all font-bold">KingPlayer</h4>
+                        <p class="text-xs text-gray-500">Joueur</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-2">
+                    <button type="button"
+                            class="btn-modifier rounded-lg border border-blue-400/40 px-3 py-2 text-sm text-blue-300 transition hover:bg-blue-400/10">
+                        Modifier
+                    </button>
+
+                    <button type="button"
+                            class="btn-supprimer rounded-lg border border-red-400/40 px-3 py-2 text-sm text-red-300 transition hover:bg-red-400/10">
+                        Supprimer
+                    </button>
+
+                    <button type="button"
+                            class="btn-choisir rounded-lg bg-empire-gold px-4 py-2 text-sm font-bold text-black transition hover:bg-yellow-400">
+                        Choisir
+                    </button>
+                </div>
+
+            </div>
+        </article> -->
+
+        
+
+    </div>
+
+    <p id="selectedProfileMessage"
+       role="status"
+       class="mt-5 hidden text-sm text-emerald-400">
+    </p>
+
+</div>
+
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ROLES -->
+        <section id="jouer" class="mx-auto max-w-7xl px-5 py-16 lg:px-10">
+
+            <div class="text-center">
+                <p class="text-sm font-bold uppercase tracking-[0.25em] text-empire-gold">
+                    À toi de choisir
+                </p>
+
+                <h2 class="mt-3 text-3xl font-black sm:text-4xl">
+                    Les trois rôles
+                </h2>
+
+                <p class="mx-auto mt-4 max-w-xl text-gray-400">
+                    Chaque rôle possède sa propre force. Comprends la hiérarchie
+                    pour surprendre ton adversaire.
+                </p>
+            </div>
+
+            <div class="mt-10 grid gap-6 md:grid-cols-3">
+
+                <article class="rounded-2xl border border-empire-gold/30 bg-empire-card p-7 transition duration-300 hover:-translate-y-2 hover:border-empire-gold">
+                    <div class="relative flex h-20 w-16 items-center justify-center rounded-xl bg-empire-gold/10 text-3xl">
+                        <img src="images/emperor.png" alt="empereur" class="absolute inset-0 h-full w-full object-cover rounded-xl">
+                    </div>
+
+                    <h3 class="mt-5 text-xl font-bold text-empire-gold">L'Empereur</h3>
+
+                    <p class="mt-3 text-sm leading-6 text-gray-400">
+                        Le pouvoir et la richesse sont entre ses mains.
+                        Mais attention : l'Esclave peut le vaincre.
+                    </p>
+
+                    <div class="mt-6 border-t border-white/10 pt-4 text-sm">
+                        <span class="text-gray-500">Pouvoir :</span>
+                        <span class="ml-2 font-semibold text-empire-gold">Royal</span>
+                    </div>
+                </article>
+
+                <article class="rounded-2xl border border-blue-900/60 bg-empire-card p-7 transition duration-300 hover:-translate-y-2 hover:border-blue-400">
+                    <div class="relative flex h-20 w-16 items-center justify-center rounded-xl bg-blue-500/10 text-3xl">
+                        <img src="images/citizen.png" alt="citizen" class="absolute inset-0 h-full w-full object-cover rounded-xl">
+                    </div>
+
+                    <h3 class="mt-5 text-xl font-bold text-blue-300">Le Citoyen</h3>
+
+                    <p class="mt-3 text-sm leading-6 text-gray-400">
+                        Il obéit à l'Empereur, mais sa force lui permet
+                        de battre l'Esclave.
+                    </p>
+
+                    <div class="mt-6 border-t border-white/10 pt-4 text-sm">
+                        <span class="text-gray-500">Pouvoir :</span>
+                        <span class="ml-2 font-semibold text-blue-300">Équilibré</span>
+                    </div>
+                </article>
+
+                <article class="rounded-2xl border border-red-900/60 bg-empire-card p-7 transition duration-300 hover:-translate-y-2 hover:border-red-400">
+                    <div class="relative flex h-20 w-16 items-center justify-center rounded-xl bg-red-500/10 text-3xl">
+                        <img src="images/slave.png" alt="slave" class="absolute inset-0 h-full w-full object-cover rounded-xl">
+                    </div>
+
+                    <h3 class="mt-5 text-xl font-bold text-red-300">L'Esclave</h3>
+
+                    <p class="mt-3 text-sm leading-6 text-gray-400">
+                        Il n'a rien à perdre. C'est le seul rôle capable
+                        de renverser l'Empereur.
+                    </p>
+
+                    <div class="mt-6 border-t border-white/10 pt-4 text-sm">
+                        <span class="text-gray-500">Pouvoir :</span>
+                        <span class="ml-2 font-semibold text-red-300">Imprévisible</span>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        
+
+        
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 px-5 py-7">
+        <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 text-center sm:flex-row">
+
+            <a href="#accueil" class="font-bold tracking-wide">
+                EMPIRE <span class="text-empire-gold">CARDS</span>
+            </a>
+
+            <p class="text-sm text-gray-500">
+                © 2026 Empire Cards — Tous droits réservés.
+            </p>
+
+            <a href="#accueil" class="text-sm text-gray-400 transition hover:text-empire-gold">
+                Retour en haut ↑
+            </a>
+
+        </div>
+    </footer>
+
+    
+    <script type="module" src="script.js"></script>
+    <script type="module" src="src/players.js"></script>
+    
 </body>
 </html>

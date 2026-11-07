@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="src/output.css">
+</head>
+<body class="min-h-screen bg-empire-dark text-white">
+    <!-- HEADER -->
+    <header class="border-b border-white/10">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 lg:px-10">
+
+            <a href="#accueil" class="flex items-center gap-3">
+                <div class="logo flex h-11 w-11 items-center justify-center rounded-xl border border-empire-gold/50 bg-empire-gold/10 text-2xl">
+                    ♛
+                </div>
+
+                <div>
+                    <h1 class="text-lg font-bold tracking-wide">
+                        EMPIRE <span class="text-empire-gold">CARDS</span>
+                    </h1>
+                    <p class="Pseudo text-xs text-empire-muted">
+                        Le pouvoir est entre vos mains
+                    </p>
+                </div>
+            </a>
+
+            <div class="hidden items-center gap-8 md:flex">
+                <a href="index.html" class="text-sm text-empire-gold">Accueil</a>
+                <a href="regle.html" class="text-sm text-gray-300 transition hover:text-empire-gold">Règles</a>
+                <a href="jouee.html" class="text-sm text-gray-300 transition hover:text-empire-gold">jouer</a>
+                <a href="historique.html" class="text-sm text-gray-300 transition hover:text-empire-gold">Classement</a>
+                <a href="#profil" class="text-sm text-gray-300 transition hover:text-empire-gold">Mon profil</a>
+            </div>
+
+            <!-- Menu mobile -->
+            <a href="index.html"
+               class="rounded-lg border border-empire-gold px-4 py-2 text-sm font-semibold text-empire-gold transition hover:bg-empire-gold hover:text-black md:hidden">
+                Mon profil
+            </a>
+
+        </nav>
+    </header>
+
+    <main>
+
+    <!-- REGLES -->
+        <section id="regles" class="border-y border-white/10 bg-[#171613]">
+
+            <div class="mx-auto max-w-7xl px-5 py-16 lg:px-10">
+
+                <div class="text-center">
+                    <p class="text-sm font-bold uppercase tracking-widest text-empire-gold">
+                        Facile à apprendre
+                    </p>
+
+                    <h2 class="mt-3 text-3xl font-black sm:text-4xl">
+                        Les règles du duel
+                    </h2>
+                </div>
+
+                <div class="mx-auto mt-10 grid max-w-4xl gap-4">
+
+                    <div class="flex items-center gap-4 rounded-xl border border-white/10 bg-empire-card p-5">
+                        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-empire-gold/10 text-2xl">👑</span>
+                        <div>
+                            <h3 class="font-bold">Empereur contre Citoyen</h3>
+                            <p class="mt-1 text-sm text-gray-400">L'Empereur l'emporte.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4 rounded-xl border border-white/10 bg-empire-card p-5">
+                        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 text-2xl">⚔️</span>
+                        <div>
+                            <h3 class="font-bold">Citoyen contre Esclave</h3>
+                            <p class="mt-1 text-sm text-gray-400">Le Citoyen l'emporte.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4 rounded-xl border border-white/10 bg-empire-card p-5">
+                        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-red-500/10 text-2xl">♟️</span>
+                        <div>
+                            <h3 class="font-bold">Esclave contre Empereur</h3>
+                            <p class="mt-1 text-sm text-gray-400">L'Esclave gagne contre l'Empereur.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+        <!-- FOOTER -->
+    <footer class="border-t border-white/10 px-5 py-7">
+        <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 text-center sm:flex-row">
+
+            <a href="#accueil" class="font-bold tracking-wide">
+                EMPIRE <span class="text-empire-gold">CARDS</span>
+            </a>
+
+            <p class="text-sm text-gray-500">
+                © 2026 Empire Cards — Tous droits réservés.
+            </p>
+
+            <a href="#accueil" class="text-sm text-gray-400 transition hover:text-empire-gold">
+                Retour en haut ↑
+            </a>
+
+        </div>
+    </footer>
+</body>
+</html>

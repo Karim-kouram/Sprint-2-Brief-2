@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empire Cards | Duel</title>
+
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        empire: {
+                            dark: "#11110f",
+                            panel: "#1c1b18",
+                            gold: "#d4af63",
+                            muted: "#a8a29e"
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+
+<body class="h-dvh overflow-hidden bg-empire-dark text-white">
+
+    <main class="mx-auto flex h-full max-w-7xl flex-col overflow-hidden px-3 py-3 sm:px-6 sm:py-4">
+
+        <!-- NAVIGATION -->
+        <nav class="flex shrink-0 items-center justify-between gap-3 border-b border-white/10 pb-3 sm:pb-4">
+
+            <a href="index.html" class="flex items-center gap-2 sm:gap-3">
+                <div class="logo flex h-9 w-9 items-center justify-center rounded-lg border border-empire-gold/40 bg-empire-gold/10 text-xl sm:h-11 sm:w-11">
+                    ♛
+                </div>
+
+                <div>
+                    <h1 class="text-sm font-black tracking-wide sm:text-lg">
+                        EMPIRE <span class="text-empire-gold">CARDS</span>
+                    </h1>
+                    <p class="Pseudo text-xs text-gray-500 sm:block">Arène de duel</p>
+                </div>
+            </a>
+
+            <div class="flex items-center gap-2 sm:gap-4">
+                <div class="rounded-lg border border-white/10 bg-empire-panel px-3 py-2 text-center sm:px-5">
+                    <p class="text-[10px] uppercase tracking-wider text-gray-500 sm:text-xs">
+                        Groupes
+                    </p>
+                    <p class="mt-0.5 text-base font-bold sm:text-xl"><span id="groupe">1</span></p>
+                </div>
+
+                <div class="rounded-lg border border-white/10 bg-empire-panel px-3 py-2 text-center sm:px-5">
+                    <p class="text-[10px] uppercase tracking-wider text-gray-500 sm:text-xs">
+                        Matches
+                    </p>
+                    <p class="mt-0.5 text-base font-bold sm:text-xl"><span id="matche">1</span></p>
+                </div>
+
+                <div class="rounded-lg border border-empire-gold/30 bg-empire-gold/10 px-3 py-2 text-center sm:px-5">
+                    <p class="text-[10px] uppercase tracking-wider text-empire-gold sm:text-xs">
+                        Score
+                    </p>
+                    <p class="mt-0.5 text-base font-bold text-empire-gold sm:text-xl"><span id="scorePc">0</span> - <span id="scorePlayer">0</span></p>
+                </div>
+
+            </div>
+
+            <a href="index.html"
+               aria-label="Quitter le jeu"
+               title="Quitter le jeu"
+               class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 text-gray-400 transition hover:border-red-400 hover:text-red-400 sm:h-11 sm:w-11">
+                ✕
+            </a>
+
+        </nav>
+
+        <!-- ZONE ORDINATEUR -->
+        <section class="flex min-h-0 flex-1 flex-col items-center justify-center border-b border-white/10 py-2 sm:py-3">
+
+            <div class="mb-2 flex w-full max-w-2xl items-center justify-between gap-2 sm:mb-3">
+
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <div class="flex h-9 w-9 items-center justify-center rounded-full border border-red-400/30 bg-red-400/10 text-lg sm:h-11 sm:w-11 sm:text-xl">
+                        🤖
+                    </div>
+
+                    <div>
+                        <h2 class="text-sm font-bold sm:text-base">Ordinateur</h2>
+                        <p class="text-[10px] text-gray-500 sm:text-xs">Adversaire</p>
+                    </div>
+                </div>
+
+                <span class="rounded-full border border-white/10 px-3 py-1 text-[10px] text-gray-400 sm:text-xs">
+                    5 cartes
+                </span>
+
+            </div>
+
+            <!-- 4 CARTES CACHEES -->
+            <section id="cartePC" class="flex items-center justify-center gap-2 sm:gap-4">
+                <!--
+                <article class="flex h-24 w-16 items-center justify-center rounded-lg border border-empire-gold/50 bg-gradient-to-br from-amber-950 to-black shadow-lg sm:h-32 sm:w-24 sm:rounded-xl">
+                    <div class="flex h-[85%] w-[85%] items-center justify-center rounded-md border border-empire-gold/30">
+                        <span class="text-3xl text-empire-gold sm:text-4xl">♛</span>
+                    </div>
+                </article>
+
+                <article class="flex h-24 w-16 items-center justify-center rounded-lg border border-empire-gold/50 bg-gradient-to-br from-amber-950 to-black shadow-lg sm:h-32 sm:w-24 sm:rounded-xl">
+                    <div class="flex h-[85%] w-[85%] items-center justify-center rounded-md border border-empire-gold/30">
+                        <span class="text-3xl text-empire-gold sm:text-4xl">♛</span>
+                    </div>
+                </article>
+
+                <article class="flex h-24 w-16 items-center justify-center rounded-lg border border-empire-gold/50 bg-gradient-to-br from-amber-950 to-black shadow-lg sm:h-32 sm:w-24 sm:rounded-xl">
+                    <div class="flex h-[85%] w-[85%] items-center justify-center rounded-md border border-empire-gold/30">
+                        <span class="text-3xl text-empire-gold sm:text-4xl">♛</span>
+                    </div>
+                </article>
+
+                <article class="flex h-24 w-16 items-center justify-center rounded-lg border border-empire-gold/50 bg-gradient-to-br from-amber-950 to-black shadow-lg sm:h-32 sm:w-24 sm:rounded-xl">
+                    <div class="flex h-[85%] w-[85%] items-center justify-center rounded-md border border-empire-gold/30">
+                        <span class="text-3xl text-empire-gold sm:text-4xl">♛</span>
+                    </div>
+                </article> -->
+
+            </section>
+
+            <p class="mt-2 text-[10px] text-gray-500 sm:mt-3 sm:text-xs">
+                Les cartes de l'adversaire sont cachées
+            </p>
+
+        </section>
+
+        <!-- CENTRE : DUEL -->
+        <section class="flex min-h-0 flex-[1.15] flex-col items-center justify-center py-2 sm:py-4">
+
+            <div class="mb-2 flex items-center gap-2 sm:mb-4">
+                <span class="h-px w-6 bg-empire-gold/40 sm:w-12"></span>
+                <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-empire-gold sm:text-sm">
+                    Zone de duel
+                </h2>
+                <span class="h-px w-6 bg-empire-gold/40 sm:w-12"></span>
+            </div>
+
+            <div class="flex items-center justify-center gap-3 sm:gap-8">
+
+                <!-- CARTE ORDINATEUR -->
+                <div class="text-center">
+                    <p class="mb-2 text-[10px] font-semibold uppercase tracking-wider text-gray-500 sm:text-xs">
+                        Ordinateur
+                    </p>
+
+                    <section id="PC" class="relative flex h-32 w-24 items-center justify-center rounded-xl border-2 border-dashed border-red-400/40 bg-red-400/5 sm:h-44 sm:w-32">
+                        <div class="text-center">
+                            <span class="text-4xl text-red-300 sm:text-5xl">?</span>
+                            <p class="mt-2 text-[9px] text-gray-500 sm:text-xs">Carte cachée</p>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- VS -->
+                <div class="flex flex-col items-center gap-2">
+                    <span class="text-xl font-black italic text-empire-gold sm:text-3xl">VS</span>
+                    <span class="h-1 w-1 rounded-full bg-empire-gold/60"></span>
+                    <span class="h-1 w-1 rounded-full bg-empire-gold/40"></span>
+                    <span class="h-1 w-1 rounded-full bg-empire-gold/20"></span>
+                </div>
+
+                <!-- CARTE JOUEUR -->
+                <div class="text-center">
+                    <p class="mb-2 text-[10px] font-semibold uppercase tracking-wider text-gray-500 sm:text-xs">
+                        Votre carte
+                    </p>
+
+                    <section id="player" class="relative flex h-32 w-24 flex-col items-center justify-center rounded-xl border-2 border-empire-gold/60 bg-gradient-to-b from-empire-gold/10 to-empire-panel shadow-[0_0_25px_rgba(212,175,99,0.08)] sm:h-44 sm:w-32">
+
+                        <span class="text-4xl text-empire-gold sm:text-5xl">♛</span>
+
+                        <p class="mt-3 text-[10px] font-bold tracking-widest text-empire-gold sm:text-xs">
+                            À JOUER
+                        </p>
+                        
+
+                    </section>
+                </div>
+
+            </div>
+
+            <p class="mt-3 text-center text-[10px] text-gray-500 sm:mt-4 sm:text-xs">
+                Choisissez une carte pour lancer le duel.
+            </p>
+
+        </section>
+
+        <!-- ZONE JOUEUR -->
+        <section class="flex min-h-0 flex-1 flex-col items-center justify-center border-t border-white/10 py-2 sm:py-3">
+
+            <div class="mb-2 flex w-full max-w-2xl items-center justify-between gap-2 sm:mb-3">
+
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <div id="playerAvatar" class="flex h-9 w-9 items-center justify-center rounded-full border border-empire-gold/40 bg-empire-gold/10 text-lg sm:h-11 sm:w-11 sm:text-xl">
+                        👑
+                    </div>
+
+                    <div>
+                        <h2 id="playerName" class="text-sm font-bold sm:text-base">Vous</h2>
+                        <p class="text-[10px] text-gray-500 sm:text-xs">Votre main</p>
+                    </div>
+                </div>
+
+                <span class="rounded-full border border-empire-gold/30 bg-empire-gold/5 px-3 py-1 text-[10px] text-empire-gold sm:text-xs">
+                    5 cartes
+                </span>
+
+            </div>
+
+            <!-- 4 CARTES DU JOUEUR -->
+            <section id="cartePlayer" class="flex items-center justify-center gap-2 sm:gap-4">
+                
+                <!-- EMPEREUR 
+                <div  class="relative flex h-24 w-16  items-center justify-center rounded-lg border border-empire-gold/50 bg-gradient-to-b from-amber-950 to-empire-panel transition hover:-translate-y-2 hover:border-empire-gold hover:shadow-lg hover:shadow-amber-500/10 focus:outline-none focus:ring-2 focus:ring-empire-gold sm:h-32 sm:w-24 sm:rounded-xl">
+                    <img src="empereur.png" alt="CITOYEN" class="absolute inset-0 h-full w-full object-cover rounded-2xl">
+                </div> -->
+
+                <!-- ESCLAVE 
+                <div  class="relative flex h-24 w-16  items-center justify-center rounded-lg border border-red-400/40 bg-gradient-to-b from-red-950 to-empire-panel transition hover:-translate-y-2 hover:border-red-300 hover:shadow-lg hover:shadow-red-500/10 focus:outline-none focus:ring-2 focus:ring-red-300 sm:h-32 sm:w-24 sm:rounded-xl">
+                    <img src="images/esclave.png" alt="CITOYEN" class="absolute inset-0 h-full w-full object-cover rounded-2xl">
+                </div> -->
+
+                <!-- CITOYEN 
+                <div  class="relative flex h-24 w-16  items-center justify-center rounded-lg border border-blue-400/40 bg-gradient-to-b from-blue-950 to-empire-panel transition hover:-translate-y-2 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-500/10 focus:outline-none focus:ring-2 focus:ring-blue-300 sm:h-32 sm:w-24 sm:rounded-xl">
+                    <img src="images/citoyen.png" alt="CITOYEN" class="absolute inset-0 h-full w-full object-cover rounded-2xl">
+                </div> -->
+
+                <!-- CITOYEN 
+                <div  class="relative flex h-24 w-16  items-center justify-center rounded-lg border border-blue-400/40 bg-gradient-to-b from-blue-950 to-empire-panel transition hover:-translate-y-2 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-500/10 focus:outline-none focus:ring-2 focus:ring-blue-300 sm:h-32 sm:w-24 sm:rounded-xl">
+                    <img src="images/citoyen.png" alt="CITOYEN" class="absolute inset-0 h-full w-full object-cover rounded-2xl">
+                </div> -->
+
+                <!-- CITOYEN 
+                <div  class="relative flex h-24 w-16  items-center justify-center rounded-lg border border-blue-400/40 bg-gradient-to-b from-blue-950 to-empire-panel transition hover:-translate-y-2 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-500/10 focus:outline-none focus:ring-2 focus:ring-blue-300 sm:h-32 sm:w-24 sm:rounded-xl">
+                    <img src="images/citoyen.png" alt="CITOYEN" class="absolute inset-0 h-full w-full object-cover rounded-2xl">
+                </div> -->
+
+            </section>
+
+            <p class="mt-2 text-center text-[10px] text-gray-500 sm:mt-3 sm:text-xs">
+                Sélectionnez une carte parmi vos quatre cartes.
+            </p>
+
+        </section>
+
+    </main>
+
+    <div id="gameOverPopup" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80">
+
+        <div class="w-[90%] max-w-md rounded-2xl border border-empire-gold bg-gray-900 p-8 text-center shadow-2xl">
+
+            <h2 class="mb-4 text-3xl font-bold text-empire-gold">
+                Game Over!
+            </h2>
+
+            <p id="resultMessage" class="mb-8 text-white">
+                La partie est terminée !
+            </p>
+
+            <div class="flex justify-center gap-4">
+
+                <button id="btnAccueil"
+                    class="rounded-lg bg-gray-700 px-5 py-3 text-white transition hover:bg-gray-600">
+                    Accueil
+                </button>
+
+                <button id="btnPlayAgain"
+                    class="rounded-lg bg-empire-gold px-5 py-3 font-bold text-black transition hover:scale-105">
+                    Play Again
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="src/game.js"></script>
+    <script type="module" src="src/ui.js"></script>
+</body>
+</html>

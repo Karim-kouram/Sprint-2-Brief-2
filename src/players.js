@@ -1,17 +1,16 @@
 import { saveData } from "./storage.js";
 import { getData } from "./storage.js";
 import { removeData } from "./storage.js";
-const players = [];
+
 
 function creeProfil(pseudo,avatar){
-    const div = document.getElementById("profilesList");
+    const listProfile = document.getElementById("profilesList");
     const article = document.createElement("article");
 
     article.dataset.name = pseudo;
     article.dataset.avatar = avatar;
-
     article.classList = "profile-card rounded-xl border border-white/10 bg-[#11110f] p-4 transition hover:border-empire-gold/50";
-
+    
     article.innerHTML = `
         <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 
@@ -45,10 +44,13 @@ function creeProfil(pseudo,avatar){
 
             </div>`;
 
-    div.appendChild(article);
+    listProfile.appendChild(article);
 }
 export function AfficherPlayer(){
     const players = getData("players") || [];
+    const listProfile = document.getElementById("profilesList");
+
+    listProfile.innerHTML = "";
 
     players.forEach(player => {
         creeProfil(player.nickname, player.avatar);
@@ -65,25 +67,55 @@ export function AjouterPlayer(pseudo, avatar){
     players.push({
         nickname: pseudo,           
         avatar: avatar,               
-        createdAt: Date.now()        
+        createdAt: new Date().toISOString().split("T",1)[0]       
     });
 
     saveData("players", players);
 
-    creeProfil(pseudo, avatar);
+    AfficherPlayer();
+
 }
 
 export function ModifierPlayer(pseudo,newPseudo, newAvatar){
-    const player = getData(pseudo);
+    const players = getData("players") || [];
+
+    const player = players.find(player => player.nickname === pseudo);
+
+    if (!player) return;
+
+    //Modification d'un objet par référence!
 
     player.nickname = newPseudo;
     player.avatar = newAvatar;
-    player.createdAt = Date.now();
+    player.createdAt = new Date().toISOString().split("T",1)[0]
 
-    saveData(pseudo, player);
+    
+
+    saveData("players", players);
+
+    AfficherPlayer();
+
 
 }
 export function SupprimerPlayer(pseudo){
-    removeData(pseudo);
+    const players = getData("players") || [];
 
+    const Newplayers = players.filter(player => player.nickname !== pseudo);
+    
+    saveData("players", Newplayers);
+
+    AfficherPlayer();
+}
+
+export function ChoisirProfil(avatarChoisi ,pseudoChoisi ){
+
+    if (!avatarChoisi || !pseudoChoisi) return;
+
+    const profilechoisi = {
+        nickname: pseudoChoisi,           
+        avatar: avatarChoisi,               
+        createdAt: new Date().toISOString().split("T",1)[0]
+    };
+
+    saveData("profilechoisi", profilechoisi);
 }
