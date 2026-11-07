@@ -2,11 +2,10 @@
 
 export function createGame(player) {
 
-    if (!player) {
-        return null;
-    }
+    if (!player) return null;
 
-    const game = {
+    return {
+        id: Date.now(),
         playerId: player,
         round: 1,
         duelCount: 0,
@@ -18,15 +17,47 @@ export function createGame(player) {
         playerScore: 0,
         computerScore: 0,
         roundWinner: null,
-        status: "playing"
+        winner: null,
+        status: "playing",
+        createdAt: new Date().toISOString(),
+        endedAt: null
     };
+}
+
+export function saveGame(game) {
+
+    if (!game) return;
+
+    // Récupérer les anciennes parties
+    let games = JSON.parse(localStorage.getItem("games")) || [];
+
+    // Enregistrer la nouvelle partie
+    games.push(game);
+
+    localStorage.setItem("games", JSON.stringify(games));
+}
+
+export function finishGame(game) {
+
+    if (!game || game.status === "finished") return;
+
+    game.status = "finished";
+    game.endedAt = new Date().toISOString();
+
+    // Déterminer le gagnant
+    if (game.playerScore > game.computerScore) {
+        game.winner = game.playerId;
+    }
+    else if (game.playerScore < game.computerScore) {
+        game.winner = "Computer";
+    }
+    else {
+        game.winner = "Draw";
+    }
+
+    saveGame(game);
 
     return game;
-}
-export function finishedgame(round,player){
-    if (round > 12){
-        createGame(player);
-    }
 }
 
 const emperor = ["emperor","citizen","citizen","citizen","citizen"];
@@ -219,32 +250,17 @@ export function calculGroup(round){
 const popup = document.getElementById("gameOverPopup");
 const resultMessage = document.getElementById("resultMessage");
 
-// Fonction pour afficher le popup
-export function afficherGameOver(message) {
+// Fonction Popup
+function afficherGameOver(message) {
 
     resultMessage.textContent = message;
 
     popup.classList.remove("hidden");
     popup.classList.add("flex");
+
+    gameFinished = true;
 }
 
-export function PlayAgain(nickname){
-    
-const btnAccueil = document.getElementById("btnAccueil");
-const btnPlayAgain = document.getElementById("btnPlayAgain");
-
-// Bouton Accueil
-btnAccueil.addEventListener("click", () => {
-    window.location.href = "index.html";
-});
-
-// Bouton Play Again
-btnPlayAgain.addEventListener("click", () => {
-    popup.classList.add("hidden");
-    popup.classList.remove("flex");
-
-
-    // Relancer la partie
+export function PlayAgain(nickname) {
     return createGame(nickname);
-});
 }

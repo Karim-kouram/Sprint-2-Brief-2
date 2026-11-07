@@ -11,7 +11,7 @@
     <header class="border-b border-white/10">
         <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 lg:px-10">
 
-            <a href="#accueil" class="flex items-center gap-3">
+            <a href="index.html" class="flex items-center gap-3">
                 <div class="logo flex h-11 w-11 items-center justify-center rounded-xl border border-empire-gold/50 bg-empire-gold/10 text-2xl">
                     ♛
                 </div>
@@ -31,7 +31,7 @@
                 <a href="regle.html" class="text-sm text-gray-300 transition hover:text-empire-gold">Règles</a>
                 <a href="jouee.html" class="text-sm text-gray-300 transition hover:text-empire-gold">jouer</a>
                 <a href="historique.html" class="text-sm text-gray-300 transition hover:text-empire-gold">Classement</a>
-                <a href="#profil" class="text-sm text-gray-300 transition hover:text-empire-gold">Mon profil</a>
+                <a href="index.html" class="text-sm text-gray-300 transition hover:text-empire-gold">Mon profil</a>
             </div>
 
             <!-- Menu mobile -->
@@ -56,7 +56,7 @@
                 <h2 class="mt-3 text-3xl font-black">Classement</h2>
 
                 <p class="mt-3 text-sm text-gray-500">
-                    Données de démonstration, à remplacer par les résultats réels.
+                     Classement basé sur les résultats réels des joueurs.
                 </p>
             </div>
 
@@ -72,27 +72,8 @@
                         </tr>
                     </thead>
 
-                    <tbody class="divide-y divide-white/10 text-sm">
-                        <tr class="transition hover:bg-white/5">
-                            <td class="px-6 py-5 font-bold text-empire-gold">#1</td>
-                            <td class="px-6 py-5 font-semibold">KingPlayer</td>
-                            <td class="px-6 py-5">24</td>
-                            <td class="px-6 py-5 font-bold text-empire-gold">720</td>
-                        </tr>
+                    <tbody id="classementBody" class="divide-y divide-white/10 text-sm">
 
-                        <tr class="transition hover:bg-white/5">
-                            <td class="px-6 py-5 font-bold text-gray-300">#2</td>
-                            <td class="px-6 py-5 font-semibold">CardMaster</td>
-                            <td class="px-6 py-5">19</td>
-                            <td class="px-6 py-5 font-bold">570</td>
-                        </tr>
-
-                        <tr class="transition hover:bg-white/5">
-                            <td class="px-6 py-5 font-bold text-amber-700">#3</td>
-                            <td class="px-6 py-5 font-semibold">ShadowAce</td>
-                            <td class="px-6 py-5">15</td>
-                            <td class="px-6 py-5 font-bold">450</td>
-                        </tr>
                     </tbody>
 
                 </table>
@@ -106,7 +87,7 @@
     <footer class="border-t border-white/10 px-5 py-7">
         <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 text-center sm:flex-row">
 
-            <a href="#accueil" class="font-bold tracking-wide">
+            <a href="index.html" class="font-bold tracking-wide">
                 EMPIRE <span class="text-empire-gold">CARDS</span>
             </a>
 
@@ -114,11 +95,13 @@
                 © 2026 Empire Cards — Tous droits réservés.
             </p>
 
-            <a href="#accueil" class="text-sm text-gray-400 transition hover:text-empire-gold">
+            <a href="index.html" class="text-sm text-gray-400 transition hover:text-empire-gold">
                 Retour en haut ↑
             </a>
 
         </div>
     </footer>
+
+    <script type="module" src="src/history.js"></script>
 </body>
 </html>
