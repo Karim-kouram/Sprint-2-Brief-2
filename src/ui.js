@@ -37,7 +37,7 @@ let camp2 = handPC(game.round);
 let copieHandplayer = [...camp1];
 let copieHandpc = [...camp2];
 
-
+let isPlaying = false;
 
 const carteplayer = document.getElementById("cartePlayer");
 const player = document.getElementById("player");
@@ -74,6 +74,8 @@ function recommencerJeu() {
 
     // Réinitialiser le jeu
     game = PlayAgain(profilechoisi.nickname);
+
+    isPlaying = false;
 
     game.status = "playing";
 
@@ -126,7 +128,9 @@ btnPlayAgain.addEventListener("click", recommencerJeu);
 carteplayer.addEventListener("click", function(e) {
 
     // Empêcher de jouer après la fin
-    if (game.status == "finished") return;
+    if (game.status == "finished" || isPlaying) return;
+
+    isPlaying = true;
 
     const scorePc = document.getElementById("scorePc");
     const scorePlayer = document.getElementById("scorePlayer");
@@ -194,6 +198,7 @@ carteplayer.addEventListener("click", function(e) {
         if (game.round > 12) {
 
             finishGame(game, profilechoisi);
+            isPlaying = true;
 
             let message;
 
@@ -258,6 +263,9 @@ carteplayer.addEventListener("click", function(e) {
                 </p>
             </div>
         `;
+
+        // Autoriser un nouveau clic
+        isPlaying = false;
 
     }, 2000);
 
