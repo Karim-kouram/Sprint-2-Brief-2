@@ -24,20 +24,40 @@ export function createGame(player) {
     };
 }
 
-export function saveGame(game) {
+// Enregistrer une partie terminée
+export function saveGame(game, profile) {
 
-    if (!game) return;
+    const games = JSON.parse(localStorage.getItem("games")) || [];
 
-    // Récupérer les anciennes parties
-    let games = JSON.parse(localStorage.getItem("games")) || [];
+    // Date locale
+    const now = new Date();
+    const date = new Date(
+        now.getTime() - now.getTimezoneOffset() * 60000
+    ).toISOString().slice(0, 16);
 
-    // Enregistrer la nouvelle partie
-    games.push(game);
+    const newGame = {
+        id: `g_${Date.now()}`,
+        playerId: profile.id,
+        playerName: profile.nickname,
+        date: date,
+        playerScore: game.playerScore,
+        computerScore: game.computerScore,
+        result:
+            game.playerScore > game.computerScore
+                ? "victoire"
+                : game.playerScore < game.computerScore
+                    ? "défaite"
+                    : "égalité"
+    };
+
+    games.push(newGame);
 
     localStorage.setItem("games", JSON.stringify(games));
+
+    //return newGame;
 }
 
-export function finishGame(game) {
+export function finishGame(game, profile) {
 
     if (!game || game.status === "finished") return;
 
@@ -55,7 +75,7 @@ export function finishGame(game) {
         game.winner = "Draw";
     }
 
-    saveGame(game);
+    saveGame(game, profile);
 
     return game;
 }

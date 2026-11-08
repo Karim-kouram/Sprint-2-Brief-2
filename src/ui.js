@@ -11,6 +11,7 @@ import { removeCards } from "./game.js";
 import { calculGroup } from "./game.js";
 import { finishGame } from "./game.js";
 import { PlayAgain } from "./game.js";
+import { saveGame } from "./game.js";
 
 
 const profilechoisi = getData("profilechoisi");
@@ -192,7 +193,7 @@ carteplayer.addEventListener("click", function(e) {
         // Vérifier fin de partie
         if (game.round > 12) {
 
-            finishGame(game);
+            finishGame(game, profilechoisi);
 
             let message;
 

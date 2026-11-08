@@ -30,7 +30,7 @@
                 <a href="index.html" class="text-sm text-empire-gold">Accueil</a>
                 <a href="regle.html" class="text-sm text-gray-300 transition hover:text-empire-gold">Règles</a>
                 <a href="jouee.html" class="text-sm text-gray-300 transition hover:text-empire-gold">jouer</a>
-                <a href="historique.html" class="text-sm text-gray-300 transition hover:text-empire-gold">Classement</a>
+                <a href="historique.html" class="text-sm text-gray-300 transition hover:text-empire-gold">Historique</a>
                 <a href="index.html" class="text-sm text-gray-300 transition hover:text-empire-gold">Mon profil</a>
             </div>
 
@@ -45,41 +45,86 @@
 
     <main>
 
-    <!-- CLASSEMENT -->
-        <section id="classement" class="mx-auto max-w-7xl px-5 py-16 lg:px-10">
+   <section id="historique" class="mx-auto max-w-7xl px-5 py-16 lg:px-10">
 
-            <div>
-                <p class="text-sm font-bold uppercase tracking-widest text-empire-gold">
-                    Les meilleurs joueurs
-                </p>
+    <div>
+        <p class="text-sm font-bold uppercase tracking-widest text-empire-gold">
+            Historique
+        </p>
 
-                <h2 class="mt-3 text-3xl font-black">Classement</h2>
+        <h2 class="mt-3 text-3xl font-black">
+            Historique des parties
+        </h2>
 
-                <p class="mt-3 text-sm text-gray-500">
-                     Classement basé sur les résultats réels des joueurs.
-                </p>
-            </div>
+        <p class="mt-3 text-sm text-gray-500">
+            Consultez et gérez vos anciennes parties.
+        </p>
+    </div>
 
-            <div class="mt-8 overflow-x-auto rounded-2xl border border-white/10">
-                <table class="w-full min-w-[500px] text-left">
+    <!-- Recherche et filtres -->
+    <div class="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
 
-                    <thead class="bg-white/5 text-sm text-gray-400">
-                        <tr>
-                            <th class="px-6 py-4">Rang</th>
-                            <th class="px-6 py-4">Joueur</th>
-                            <th class="px-6 py-4">Victoires</th>
-                            <th class="px-6 py-4">Points</th>
-                        </tr>
-                    </thead>
+        <input
+            type="search"
+            id="searchPlayer"
+            placeholder="Rechercher un joueur..."
+            class="rounded-lg border border-white/10 bg-gray-900 px-4 py-3 text-white outline-none focus:border-empire-gold"
+        >
 
-                    <tbody id="classementBody" class="divide-y divide-white/10 text-sm">
+        <select
+            id="filterResult"
+            class="rounded-lg border border-white/10 bg-gray-900 px-4 py-3 text-white outline-none focus:border-empire-gold"
+        >
+            <option value="toutes">Toutes les parties</option>
+            <option value="victoire">Victoires</option>
+            <option value="défaite">Défaites</option>
+            <option value="égalité">Égalités</option>
+        </select>
 
-                    </tbody>
+        <select
+            id="filterDate"
+            class="rounded-lg border border-white/10 bg-gray-900 px-4 py-3 text-white outline-none focus:border-empire-gold"
+        >
+            <option value="tout">Toutes les dates</option>
+            <option value="today">Aujourd'hui</option>
+            <option value="week">7 derniers jours</option>
+        </select>
 
-                </table>
-            </div>
+    </div>
 
-        </section>
+    <!-- Tableau -->
+    <div class="mt-8 overflow-x-auto rounded-2xl border border-white/10">
+
+        <table class="w-full min-w-[750px] text-left">
+
+            <thead class="bg-white/5 text-sm text-gray-400">
+                <tr>
+                    <th class="px-6 py-4">Date</th>
+                    <th class="px-6 py-4">Joueur</th>
+                    <th class="px-6 py-4">Score</th>
+                    <th class="px-6 py-4">Résultat</th>
+                    <th class="px-6 py-4">Action</th>
+                </tr>
+            </thead>
+
+            <tbody
+                id="historyBody"
+                class="divide-y divide-white/10 text-sm"
+            >
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <p id="emptyMessage"
+       class="mt-6 hidden text-center text-gray-500">
+        Aucune partie ne correspond à votre recherche.
+    </p>
+
+</section>
+
+
 
     </main>
 

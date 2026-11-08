@@ -10,108 +10,216 @@ if (profilechoisi) {
 
 }
 
-function afficherClassement() {
 
-    // Récupérer les parties
-    const games = JSON.parse(localStorage.getItem("games")) || [];
+const historyBody = document.getElementById("historyBody");
 
-    const tbody = document.getElementById("classementBody");
+const searchPlayer = document.getElementById("searchPlayer");
+const filterResult = document.getElementById("filterResult");
+const filterDate = document.getElementById("filterDate");
+const emptyMessage = document.getElementById("emptyMessage");
 
-    tbody.innerHTML = "";
 
-    // Garder uniquement les parties terminées
-    const partiesTerminees = games.filter(
-        game => game.status === "finished"
+// Récupérer les parties
+function getGames() {
+    return JSON.parse(localStorage.getItem("games")) || [];
+}
+
+
+// Afficher l'historique
+function afficherHistorique() {
+
+    let games = getGames();
+
+    // 1. Trier par date : plus récente à plus ancienne
+    games.sort((a, b) =>
+        new Date(b.date) - new Date(a.date)
     );
 
-    // Regrouper les résultats par joueur
-    const classement = {};
+    // 2. Recherche par pseudo
+    const recherche = searchPlayer.value.trim().toLowerCase();
 
-    partiesTerminees.forEach(game => {
+    if (recherche) {
+        games = games.filter(game =>
+            (game.playerName || "")
+                .toLowerCase()
+                .includes(recherche)
+        );
+    }
 
-        const nickname = game.playerId;
+    // 3. Filtrer par résultat
+    const resultat = filterResult.value;
 
-        if (!classement[nickname]) {
-            classement[nickname] = {
-                nickname: nickname,
-                victories: 0,
-                points: 0
-            };
-        }
+    if (resultat !== "toutes") {
+        games = games.filter(game =>
+            game.result === resultat
+        );
+    }
 
-        // Calculer les victoires
-        if (game.winner === nickname) {
-            classement[nickname].victories++;
-        }
+    // 4. Filtrer par date
+    const dateFilter = filterDate.value;
 
-        // Additionner les points
-        classement[nickname].points += game.playerScore;
+    if (dateFilter === "today") {
 
-    });
+        const today = new Date().toLocaleDateString();
 
-    // Transformer object en array
-    const joueurs = Object.values(classement);
+        games = games.filter(game =>
+            new Date(game.date).toLocaleDateString() === today
+        );
 
-    // Trier par victoires puis par points
-    joueurs.sort((a, b) =>
-        b.victories - a.victories || b.points - a.points
-    );
+    } else if (dateFilter === "week") {
 
-    // Afficher le classement
-    if (joueurs.length === 0) {
+        const maintenant = new Date();
 
-        const tr = document.createElement("tr");
-        const td = document.createElement("td");
+        const septJours = new Date();
+        septJours.setDate(maintenant.getDate() - 7);
 
-        td.colSpan = 4;
-        td.className = "px-6 py-8 text-center text-gray-500";
-        td.textContent = "Aucune partie terminée.";
+        games = games.filter(game => {
+            const dateGame = new Date(game.date);
 
-        tr.append(td);
-        tbody.append(tr);
+            return dateGame >= septJours &&
+                   dateGame <= maintenant;
+        });
+
+    }
+
+    // Vider le tableau
+    historyBody.innerHTML = "";
+
+    // Aucune partie
+    if (games.length === 0) {
+
+        emptyMessage.classList.remove("hidden");
 
         return;
     }
 
-    joueurs.forEach((joueur, index) => {
+    emptyMessage.classList.add("hidden");
+
+
+    // 5. Afficher les parties
+    games.forEach(game => {
 
         const tr = document.createElement("tr");
 
         tr.className = "transition hover:bg-white/5";
 
-        const rang = document.createElement("td");
-        rang.className = "px-6 py-5 font-bold";
+        // Date
+        const tdDate = document.createElement("td");
 
-        const nom = document.createElement("td");
-        nom.className = "px-6 py-5 font-semibold";
+        tdDate.className = "px-6 py-5 text-gray-400";
 
-        const victoires = document.createElement("td");
-        victoires.className = "px-6 py-5";
+        tdDate.textContent = new Date(game.date).toLocaleString("fr-FR");
 
-        const points = document.createElement("td");
-        points.className = "px-6 py-5 font-bold text-empire-gold";
 
-        // Couleur des trois premiers
-        if (index === 0) {
-            rang.classList.add("text-empire-gold");
-        } else if (index === 1) {
-            rang.classList.add("text-gray-300");
-        } else if (index === 2) {
-            rang.classList.add("text-amber-700");
+        // Joueur
+        const tdPlayer = document.createElement("td");
+
+        tdPlayer.className = "px-6 py-5 font-semibold";
+
+        tdPlayer.textContent = game.playerName || game.playerId;
+
+
+        // Score
+        const tdScore = document.createElement("td");
+
+        tdScore.className = "px-6 py-5 font-bold";
+
+        tdScore.textContent =
+            `${game.playerScore} - ${game.computerScore}`;
+
+
+        // Résultat
+        const tdResult = document.createElement("td");
+
+        tdResult.className = "px-6 py-5 font-bold";
+
+        tdResult.textContent = game.result;
+
+        if (game.result === "victoire") {
+            tdResult.classList.add("text-green-500");
+        }
+        else if (game.result === "défaite") {
+            tdResult.classList.add("text-red-500");
+        }
+        else {
+            tdResult.classList.add("text-yellow-500");
         }
 
-        rang.textContent = `#${index + 1}`;
-        nom.textContent = joueur.nickname;
-        victoires.textContent = joueur.victories;
-        points.textContent = joueur.points;
 
-        tr.append(rang, nom, victoires, points);
+        // Bouton supprimer
+        const tdAction = document.createElement("td");
 
-        tbody.append(tr);
+        tdAction.className = "px-6 py-5";
+
+        const btnDelete = document.createElement("button");
+
+        btnDelete.textContent = "Supprimer";
+
+        btnDelete.className =
+            "rounded-lg bg-red-900/50 px-3 py-2 text-red-400 transition hover:bg-red-700 hover:text-white";
+
+        btnDelete.dataset.id = game.id;
+
+        tdAction.append(btnDelete);
+
+
+        // Ajouter les cellules
+        tr.append(
+            tdDate,
+            tdPlayer,
+            tdScore,
+            tdResult,
+            tdAction
+        );
+
+        historyBody.append(tr);
 
     });
 
 }
 
-// Appeler la fonction
-afficherClassement();
+// Recherche en temps réel
+searchPlayer.addEventListener("input", afficherHistorique);
+
+
+// Filtrer par résultat
+filterResult.addEventListener("change", afficherHistorique);
+
+
+// Filtrer par date
+filterDate.addEventListener("change", afficherHistorique);
+
+
+// Supprimer une partie
+historyBody.addEventListener("click", function(e) {
+
+    const button = e.target.closest("button");
+
+    if (!button) return;
+
+    const id = button.dataset.id;
+
+    // Demander confirmation
+    const confirmation = confirm(
+        "Voulez-vous vraiment supprimer cette partie ?"
+    );
+
+    if (!confirmation) return;
+
+    // Récupérer les parties
+    let games = getGames();
+
+    // Supprimer la partie sélectionnée
+    games = games.filter(game => game.id !== id);
+
+    // Enregistrer les modifications
+    localStorage.setItem("games", JSON.stringify(games));
+
+    // Actualiser l'historique
+    afficherHistorique();
+
+});
+
+
+// Affichage initial
+afficherHistorique();
